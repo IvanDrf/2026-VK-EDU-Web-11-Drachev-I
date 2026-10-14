@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <title>AskHub - задать вопрос</title>
+</head>
+
+<body>
+    <header>
+        <div class="search-header">
+            <div class="header-left">
+                <a href="/" class="no-underline-link" id="header-logo">
+                    <h1>AskHub</h1>
+                </a>
+            </div>
+
+            <div class="header-center">
+                <div class="input-group search-input">
+                    <input type="text" class="form-control" placeholder="Какая тема интересует" aria-label="Поиск темы"
+                        aria-describedby="button-addon2">
+                    <button class="btn btn-outline-success" type="button" id="button-addon2">Найти</button>
+                </div>
+                <a href="ask.html" class="btn btn-primary">Задать вопрос</a>
+            </div>
+
+            <div class="header-user-info header-right">
+                <img src="static/img/user.png" alt="Аватарка" class="user-avatar">
+                <div class="header-user-actions">
+                    <span class="user-name">IvanDrf</span>
+                    <div class="user-links">
+                        <a href="/" class="no-underline-link">Настройки</a>
+                        <a href="/" class="no-underline-link">Выйти</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container my-4">
+        <div class="row g-4">
+
+            <main class="col-lg-8 col-xl-9">
+
+                <div class="card question-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Задать вопрос</h5>
+                        <form action="/">
+                            <div class="mb-4">
+                                <label for="question-title" class="form-label">
+                                    Название вопроса
+                                </label>
+                                <input type="text" class="form-control" id="question-title" name="title"
+                                    placeholder="Например: Что лучше Django или FastAPI?" maxlength="150" required>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="question-text" class="form-label">
+                                    Текст вопроса
+                                </label>
+                                <textarea class="form-control " id="question-text" name="text" rows="8"
+                                    placeholder="Опишите ситуацию подробно" required></textarea>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="question-tags" class="form-label">
+                                    Теги
+                                </label>
+                                <input type="text" class="form-control " id="question-tags" name="tags"
+                                    placeholder="python, django, fastapi">
+                            </div>
+
+                            <a href="/" class="btn btn-outline-secondary">Отмена</a>
+                            <button class="btn btn-primary">Опубликовать вопрос</button>
+
+                        </form>
+
+                    </div>
+                </div>
+
+            </main>
+
+            <aside class="col-lg-4 col-xl-3">
+                <div class="sidebar-card">
+                    <h6 class="sidebar-title">Популярные теги</h6>
+                    <div class="sidebar-tags d-flex flex-wrap gap-1">
+                        <a href="/" class="tag">python <span class="tag-count">124</span></a>
+                        <a href="/" class="tag">javascript <span class="tag-count">98</span></a>
+                        <a href="/" class="tag">django <span class="tag-count">76</span></a>
+                        <a href="/" class="tag">react <span class="tag-count">61</span></a>
+                        <a href="/" class="tag">fastapi <span class="tag-count">54</span></a>
+                        <a href="/" class="tag">docker <span class="tag-count">43</span></a>
+                        <a href="/" class="tag">postgresql <span class="tag-count">38</span></a>
+                        <a href="/" class="tag">html <span class="tag-count">35</span></a>
+                        <a href="/" class="tag">css <span class="tag-count">33</span></a>
+                        <a href="/" class="tag">git <span class="tag-count">29</span></a>
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+    </div>
+
+    <script src="static/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <title>AskHub - сайт для вопросов и обсуждений</title>
+</head>
+
+<body>
+    <header>
+        <div class="search-header">
+            <div class="header-left">
+                <a href="/" class="no-underline-link" id="header-logo">
+                    <h1>AskHub</h1>
+                </a>
+            </div>
+
+            <div class="header-center">
+                <div class="input-group search-input">
+                    <input type="text" class="form-control" placeholder="Какая тема интересует" aria-label="Поиск темы"
+                        aria-describedby="button-addon2">
+                    <button class="btn btn-outline-success" type="button" id="button-addon2">Найти</button>
+                </div>
+                <a href="ask.html" class="btn btn-primary ask-btn">Задать вопрос</a>
+            </div>
+
+            <div class="header-user-info header-right">
+                <img src="static/img/user.png" alt="Аватарка" class="user-avatar">
+                <div class="header-user-actions">
+                    <span class="user-name">IvanDrf</span>
+                    <div class="user-links">
+                        <a href="/" class="no-underline-link">Настройки</a>
+                        <a href="/" class="no-underline-link">Выйти</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container my-4">
+        <div class="row g-4">
+
+            <main class="col-lg-8 col-xl-9">
+
+                <div class="card question-card">
+                    <div class="card-body">
+                        <div class="d-flex gap-4">
+
+                            <div class="question-side d-flex flex-column align-items-center">
+                                <img src="static/img/user.png" alt="Аватарка" class="question-avatar">
+                                <span class="question-author" title="IvanDrf">IvanDrf</span>
+                                <div class="vote-box d-flex flex-column align-items-center">
+                                    <button type="button" class="btn btn-sm vote-up" aria-label="Нравится"
+                                        aria-pressed="false">▲</button>
+                                    <span class="vote-count fw-bold">5</span>
+                                    <button type="button" class="btn btn-sm vote-down" aria-label="Не нравится"
+                                        aria-pressed="false">▼</button>
+                                </div>
+                            </div>
+
+                            <div class="question-content flex-grow-1">
+                                <h5 class="card-title question-title" title="Что лучше Django или FastAPI?">
+                                    Что лучше Django или FastAPI?
+                                </h5>
+                                <p class="card-text question-text"
+                                    title="Я выбираю между Django и FastAPI, подскажите что лучше для моего проекта">
+                                    Я выбираю между Django и FastAPI, подскажите что лучше для моего проекта
+                                </p>
+
+                                <div class="question-tags d-flex flex-wrap gap-1 mt-3">
+                                    <a href="/" class="tag">python</a>
+                                    <a href="/" class="tag">django</a>
+                                    <a href="/" class="tag">fastapi</a>
+                                    <a href="/" class="tag">backend</a>
+                                </div>
+
+                                <div class="question-meta d-flex justify-content-between align-items-center mt-3">
+                                    <small class="question-date text-muted" title="Опубликовано 12 октября 2026, 14:32">
+                                        <i class="bi bi-clock"></i> 12 окт 2026, 14:32
+                                    </small>
+                                    <a href="/" class="question-answers badge rounded-pill">12 ответов</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card question-card">
+                    <div class="card-body">
+                        <div class="d-flex gap-4">
+
+                            <div class="question-side d-flex flex-column align-items-center">
+                                <img src="static/img/user.png" alt="Аватарка" class="question-avatar">
+                                <span class="question-author" title="MariaK">MariaK</span>
+                                <div class="vote-box d-flex flex-column align-items-center">
+                                    <button type="button" class="btn btn-sm vote-up" aria-label="Нравится"
+                                        aria-pressed="false">▲</button>
+                                    <span class="vote-count fw-bold">17</span>
+                                    <button type="button" class="btn btn-sm vote-down" aria-label="Не нравится"
+                                        aria-pressed="false">▼</button>
+                                </div>
+                            </div>
+
+                            <div class="question-content flex-grow-1">
+                                <h5 class="card-title question-title"
+                                    title="Как правильно подключить Bootstrap к проекту?">
+                                    Как правильно подключить Bootstrap к проекту?
+                                </h5>
+                                <p class="card-text question-text"
+                                    title="Подскажите, как подключить стили и скрипты, чтобы не было конфликтов с моим CSS">
+                                    Подскажите, как подключить стили и скрипты, чтобы не было конфликтов с моим CSS
+                                </p>
+
+                                <div class="question-tags d-flex flex-wrap gap-1 mt-3">
+                                    <a href="/" class="tag">html</a>
+                                    <a href="/" class="tag">css</a>
+                                    <a href="/" class="tag">bootstrap</a>
+                                </div>
+
+                                <div class="question-meta d-flex justify-content-between align-items-center mt-3">
+                                    <small class="question-date text-muted" title="Опубликовано 11 октября 2026, 09:15">
+                                        <i class="bi bi-clock"></i> 11 окт 2026, 09:15
+                                    </small>
+                                    <a href="/" class="question-answers badge rounded-pill">4 ответа</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+
+            <aside class="col-lg-4 col-xl-3">
+                <div class="sidebar-card">
+                    <h6 class="sidebar-title">Популярные теги</h6>
+                    <div class="sidebar-tags d-flex flex-wrap gap-1">
+                        <a href="/" class="tag">python <span class="tag-count">124</span></a>
+                        <a href="/" class="tag">javascript <span class="tag-count">98</span></a>
+                        <a href="/" class="tag">django <span class="tag-count">76</span></a>
+                        <a href="/" class="tag">react <span class="tag-count">61</span></a>
+                        <a href="/" class="tag">fastapi <span class="tag-count">54</span></a>
+                        <a href="/" class="tag">docker <span class="tag-count">43</span></a>
+                        <a href="/" class="tag">postgresql <span class="tag-count">38</span></a>
+                        <a href="/" class="tag">html <span class="tag-count">35</span></a>
+                        <a href="/" class="tag">css <span class="tag-count">33</span></a>
+                        <a href="/" class="tag">git <span class="tag-count">29</span></a>
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+    </div>
+
+    <script src="static/js/bootstrap.min.js"></script>
+</body>
+
+</html>
