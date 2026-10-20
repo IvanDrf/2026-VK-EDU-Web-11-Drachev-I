@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="static/css/bootstrap.min.css">
     <link rel="stylesheet" href="static/css/style.css">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <title>AskHub - сайт для вопросов и обсуждений</title>
 </head>
 
@@ -34,8 +33,8 @@
                 <div class="header-user-actions">
                     <span class="user-name">IvanDrf</span>
                     <div class="user-links">
-                        <a href="/" class="no-underline-link">Настройки</a>
-                        <a href="/" class="no-underline-link">Выйти</a>
+                        <a href="/settings.html" class="no-underline-link">Настройки</a>
+                        <a href="/login.html" class="no-underline-link">Выйти</a>
                     </div>
                 </div>
             </div>
@@ -49,7 +48,7 @@
 
                 <div class="card question-card">
                     <div class="card-body">
-                        <div class="d-flex gap-4">
+                        <div class="d-flex">
 
                             <div class="question-side d-flex flex-column align-items-center">
                                 <img src="static/img/user.png" alt="Аватарка" class="question-avatar">
@@ -65,25 +64,27 @@
 
                             <div class="question-content flex-grow-1">
                                 <h5 class="card-title question-title" title="Что лучше Django или FastAPI?">
-                                    Что лучше Django или FastAPI?
+                                    <a href="question.html" class="no-underline-link">
+                                        Что лучше Django или FastAPI?
+                                    </a>
                                 </h5>
                                 <p class="card-text question-text"
                                     title="Я выбираю между Django и FastAPI, подскажите что лучше для моего проекта">
                                     Я выбираю между Django и FastAPI, подскажите что лучше для моего проекта
                                 </p>
 
-                                <div class="question-tags d-flex flex-wrap gap-1 mt-3">
-                                    <a href="/" class="tag">python</a>
-                                    <a href="/" class="tag">django</a>
-                                    <a href="/" class="tag">fastapi</a>
-                                    <a href="/" class="tag">backend</a>
+                                <div class="question-tags d-flex flex-wrap mt-3">
+                                    <a href="/tag.html" class="tag">python</a>
+                                    <a href="/tag.html" class="tag">django</a>
+                                    <a href="/tag.html" class="tag">fastapi</a>
+                                    <a href="/tag.html" class="tag">backend</a>
                                 </div>
 
                                 <div class="question-meta d-flex justify-content-between align-items-center mt-3">
                                     <small class="question-date text-muted" title="Опубликовано 12 октября 2026, 14:32">
-                                        <i class="bi bi-clock"></i> 12 окт 2026, 14:32
+                                        12 окт 2026, 14:32
                                     </small>
-                                    <a href="/" class="question-answers badge rounded-pill">12 ответов</a>
+                                    <a href="/" class="question-answers badge rounded-pill">2 ответа</a>
                                 </div>
                             </div>
 
@@ -93,7 +94,7 @@
 
                 <div class="card question-card">
                     <div class="card-body">
-                        <div class="d-flex gap-4">
+                        <div class="d-flex">
 
                             <div class="question-side d-flex flex-column align-items-center">
                                 <img src="static/img/user.png" alt="Аватарка" class="question-avatar">
@@ -117,15 +118,15 @@
                                     Подскажите, как подключить стили и скрипты, чтобы не было конфликтов с моим CSS
                                 </p>
 
-                                <div class="question-tags d-flex flex-wrap gap-1 mt-3">
-                                    <a href="/" class="tag">html</a>
-                                    <a href="/" class="tag">css</a>
-                                    <a href="/" class="tag">bootstrap</a>
+                                <div class="question-tags d-flex flex-wrap mt-3">
+                                    <a href="/tag.html" class="tag">html</a>
+                                    <a href="/tag.html" class="tag">css</a>
+                                    <a href="/tag.html" class="tag">bootstrap</a>
                                 </div>
 
                                 <div class="question-meta d-flex justify-content-between align-items-center mt-3">
                                     <small class="question-date text-muted" title="Опубликовано 11 октября 2026, 09:15">
-                                        <i class="bi bi-clock"></i> 11 окт 2026, 09:15
+                                        11 окт 2026, 09:15
                                     </small>
                                     <a href="/" class="question-answers badge rounded-pill">4 ответа</a>
                                 </div>
@@ -134,23 +135,91 @@
                         </div>
                     </div>
                 </div>
+                <div class="card question-card">
+                    <div class="card-body">
+                        <div class="d-flex">
 
+                            <div class="question-side d-flex flex-column align-items-center">
+                                <img src="static/img/user.png" alt="Аватарка" class="question-avatar">
+                                <span class="question-author" title="MariaK">MariaK</span>
+                                <div class="vote-box d-flex flex-column align-items-center">
+                                    <button type="button" class="btn btn-sm vote-up" aria-label="Нравится"
+                                        aria-pressed="false">▲</button>
+                                    <span class="vote-count fw-bold">3</span>
+                                    <button type="button" class="btn btn-sm vote-down" aria-label="Не нравится"
+                                        aria-pressed="false">▼</button>
+                                </div>
+                            </div>
+
+                            <div class="question-content flex-grow-1">
+                                <h5 class="card-title question-title" title="Lorem Ipsum?">
+                                    Lorem Ipsum
+                                </h5>
+                                <p class="card-text question-text" title="Lorem Ipsum">
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                                    Ipsum has been the industry's standard dummy text ever since 1966, when designers at
+                                    Letraset and James Mosley, the librarian at St Bride Printing Library in London,
+                                    took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's
+                                    Body Type sheets. It has survived not only many decades, but also the leap into
+                                    electronic typesetting, remaining essentially unchanged. It was popularised thanks
+                                    to these sheets and more recently with desktop publishing software like Aldus
+                                    PageMaker and Microsoft Word including versions of Lorem Ipsum.
+                                </p>
+
+                                <div class="question-tags d-flex flex-wrap mt-3">
+                                    <a href="/tag.html" class="tag">html</a>
+                                </div>
+
+                                <div class="question-meta d-flex justify-content-between align-items-center mt-3">
+                                    <small class="question-date text-muted" title="Опубликовано 14 октября 2026, 09:12">
+                                        14 окт 2026, 09:12
+                                    </small>
+                                    <a href="/" class="question-answers badge rounded-pill">1 ответ</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <nav aria-label="Навигация по страницам" class="mt-4">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <span class="page-link">Назад</span>
+                        </li>
+                        <li class="page-item active" aria-current="page">
+                            <span class="page-link">1</span>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="/">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="/">3</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="/">4</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="/">Вперёд</a>
+                        </li>
+                    </ul>
+                </nav>
             </main>
 
             <aside class="col-lg-4 col-xl-3">
                 <div class="sidebar-card">
                     <h6 class="sidebar-title">Популярные теги</h6>
-                    <div class="sidebar-tags d-flex flex-wrap gap-1">
-                        <a href="/" class="tag">python <span class="tag-count">124</span></a>
-                        <a href="/" class="tag">javascript <span class="tag-count">98</span></a>
-                        <a href="/" class="tag">django <span class="tag-count">76</span></a>
-                        <a href="/" class="tag">react <span class="tag-count">61</span></a>
-                        <a href="/" class="tag">fastapi <span class="tag-count">54</span></a>
-                        <a href="/" class="tag">docker <span class="tag-count">43</span></a>
-                        <a href="/" class="tag">postgresql <span class="tag-count">38</span></a>
-                        <a href="/" class="tag">html <span class="tag-count">35</span></a>
-                        <a href="/" class="tag">css <span class="tag-count">33</span></a>
-                        <a href="/" class="tag">git <span class="tag-count">29</span></a>
+                    <div class="sidebar-tags d-flex flex-wrap">
+                        <a href="/tag.html" class="tag">python <span class="tag-count">124</span></a>
+                        <a href="/tag.html" class="tag">javascript <span class="tag-count">98</span></a>
+                        <a href="/tag.html" class="tag">django <span class="tag-count">76</span></a>
+                        <a href="/tag.html" class="tag">react <span class="tag-count">61</span></a>
+                        <a href="/tag.html" class="tag">fastapi <span class="tag-count">54</span></a>
+                        <a href="/tag.html" class="tag">docker <span class="tag-count">43</span></a>
+                        <a href="/tag.html" class="tag">postgresql <span class="tag-count">38</span></a>
+                        <a href="/tag.html" class="tag">html <span class="tag-count">35</span></a>
+                        <a href="/tag.html" class="tag">css <span class="tag-count">33</span></a>
+                        <a href="/tag.html" class="tag">git <span class="tag-count">29</span></a>
                     </div>
                 </div>
             </aside>

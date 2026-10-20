@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <title>AskHub - сайт для вопросов и обсуждений</title>
+</head>
+
+<body>
+    <header>
+        <div class="search-header">
+            <div class="header-left">
+                <a href="/" class="no-underline-link">
+                    <h1>AskHub</h1>
+                </a>
+            </div>
+
+            <div class="header-center input-group search-input">
+                <input type="text" class="form-control" placeholder="Какая тема интересует" aria-label="Поиск темы">
+                <button class="btn btn-outline-success" type="button">Найти</button>
+            </div>
+
+            <div class="header-user-info header-right">
+                <div class="user-links">
+                    <a href="/login.html" class="no-underline-link">Войти</a>
+                    <a href="/signup.html" class="no-underline-link">Регистрация</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container my-4">
+        <div class="row g-4 justify-content-center">
+
+            <main class="col-lg-8 col-xl-7">
+
+                <div class="card question-card">
+                    <div class="card-body">
+
+                        <h1 class="auth-title">Регистрация</h1>
+                        <p class="auth-subtitle">Создайте аккаунт, чтобы задавать вопросы и отвечать другим.</p>
+
+                        <form action="/">
+
+                            <div class="mb-4 avatar-upload">
+                                <label class="form-label">Аватарка</label>
+                                <div class="avatar-upload-row">
+                                    <div class="avatar-preview">
+                                        <img src="static/img/user.png" alt="Превью аватарки" id="avatar-preview-img">
+                                    </div>
+                                    <div class="avatar-upload-controls">
+                                        <label for="avatar" class="btn btn-outline-secondary btn-sm">
+                                            Выбрать файл
+                                        </label>
+                                        <input type="file" id="avatar" name="avatar" accept="image/*" hidden>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Имя пользователя</label>
+                                <input type="text" class="form-control" id="username" name="username"
+                                    placeholder="username" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email"
+                                    placeholder="ivan@example.com" autocomplete="email" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Пароль</label>
+                                <input type="password" class="form-control" id="password" name="password"
+                                    autocomplete="new-password" required>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="password2" class="form-label">Повторите пароль</label>
+                                <input type="password" class="form-control" id="password2" name="password2"
+                                    autocomplete="new-password" required>
+                            </div>
+
+                            <div class="form-actions d-flex justify-content-end">
+                                <a href="/" class="btn btn-outline-secondary">Отмена</a>
+                                <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                            </div>
+
+                        </form>
+
+                        <p class="auth-footer">
+                            Уже есть аккаунт? <a href="login.html">Войти</a>
+                        </p>
+
+                    </div>
+                </div>
+
+            </main>
+            <aside class="col-lg-4 col-xl-3">
+                <div class="sidebar-card">
+                    <h6 class="sidebar-title">Популярные теги</h6>
+                    <div class="sidebar-tags d-flex flex-wrap">
+                        <a href="/" class="tag">python <span class="tag-count">124</span></a>
+                        <a href="/" class="tag">javascript <span class="tag-count">98</span></a>
+                        <a href="/" class="tag">django <span class="tag-count">76</span></a>
+                        <a href="/" class="tag">react <span class="tag-count">61</span></a>
+                        <a href="/" class="tag">fastapi <span class="tag-count">54</span></a>
+                        <a href="/" class="tag">docker <span class="tag-count">43</span></a>
+                        <a href="/" class="tag">postgresql <span class="tag-count">38</span></a>
+                        <a href="/" class="tag">html <span class="tag-count">35</span></a>
+                        <a href="/" class="tag">css <span class="tag-count">33</span></a>
+                        <a href="/" class="tag">git <span class="tag-count">29</span></a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <script src="static/js/bootstrap.min.js"></script>
+</body>
+
+</html>
