@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Вход — AskHub{% endblock %}
+{% block row_class %}justify-content-center{% endblock %}
+{% block main_class %}col-lg-6 col-xl-5{% endblock %}
+
+{% block content %}
+<div class="card question-card">
+    <div class="card-body">
+        <h1 class="auth-title">Вход</h1>
+        <p class="auth-subtitle">Войдите, чтобы задавать вопросы и отвечать.</p>
+
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="username" class="form-label">Логин или Email</label>
+                <input type="text" class="form-control" id="username" name="username" placeholder="IvanDrf"
+                    autocomplete="username" required autofocus>
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Пароль</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Ваш пароль"
+                    autocomplete="current-password" required>
+            </div>
+
+            <div class="form-actions d-flex justify-content-end">
+                <a href="{% url 'index' %}" class="btn btn-outline-secondary">Отмена</a>
+                <button type="submit" class="btn btn-primary">Войти</button>
+            </div>
+        </form>
+
+        <p class="auth-footer">
+            Нет аккаунта? <a href="{% url 'signup' %}">Зарегистрироваться</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Настройки профиля — AskHub{% endblock %}
+{% block row_class %}justify-content-center{% endblock %}
+{% block main_class %}col-lg-7 col-xl-6{% endblock %}
+
+{% block content %}
+<div class="card question-card">
+    <div class="card-body">
+        <h1 class="auth-title">Настройки профиля</h1>
+        <p class="auth-subtitle">Измените данные аккаунта и сохраните изменения.</p>
+
+        <form action="{% url 'profile' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-4 avatar-upload">
+                <label class="form-label">Аватарка</label>
+                <div class="avatar-upload-row">
+                    <div class="avatar-preview">
+                        <img src="{% static 'img/user.png' %}" alt="Превью аватарки" id="avatar-preview-img">
+                    </div>
+                    <div class="avatar-upload-controls">
+                        <label for="avatar" class="btn btn-outline-secondary btn-sm">Заменить</label>
+                        <input type="file" id="avatar" name="avatar" accept="image/*" hidden>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="username" class="form-label">Имя пользователя</label>
+                <input type="text" class="form-control" id="username" name="username" value="{{ user.username }}"
+                    autocomplete="username" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}"
+                    autocomplete="email" required>
+            </div>
+
+            <div class="d-flex justify-content-end pt-3 mt-3 border-top">
+                <a href="{% url 'index' %}" class="btn btn-outline-secondary me-2">Отмена</a>
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

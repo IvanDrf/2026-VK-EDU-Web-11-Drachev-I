@@ -1,0 +1,40 @@
+{% load static %}
+<header>
+    <div class="search-header">
+        <div class="header-left">
+            <a href="{% url 'index' %}" class="no-underline-link" id="header-logo">
+                <h1>AskHub</h1>
+            </a>
+        </div>
+
+        <div class="header-center">
+            <div class="input-group search-input">
+                <input type="text" class="form-control" placeholder="Какая тема интересует" aria-label="Поиск темы"
+                    aria-describedby="button-addon2">
+                <button class="btn btn-outline-success" type="button" id="button-addon2">Найти</button>
+            </div>
+            <a href="{% url 'hot' %}" class="btn btn-danger" type="button">Лучшие</a>
+            {% if user_authenticated %}
+            <a href="{% url 'ask' %}" class="btn btn-primary">Задать вопрос</a>
+            {% endif %}
+        </div>
+
+        <div class="header-user-info header-right">
+            {% if user_authenticated %}
+            <img src="{% static 'img/user.png' %}" alt="Аватарка" class="user-avatar">
+            <div class="header-user-actions">
+                <span class="user-name">IvanDrf</span>
+                <div class="user-links">
+                    <a href="{% url 'profile' %}" class="no-underline-link">Профиль</a>
+                    <a href="{% url 'login' %}" class="no-underline-link">Выйти</a>
+                </div>
+            </div>
+            {% else %}
+            <div class="user-links">
+                <a href="{% url 'login' %}" class="no-underline-link">Войти</a>
+                <a href="{% url 'signup' %}" class="no-underline-link">Регистрация</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</header>

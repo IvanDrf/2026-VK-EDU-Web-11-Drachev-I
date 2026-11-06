@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Лучшие вопросы — AskHub{% endblock %}
+
+{% block content %}
+<div class="tag-header mb-3">
+    <h1 class="tag-header-title">Лучшие вопросы</h1>
+</div>
+
+{% for question in questions %}
+{% include "includes/question_card.html" %}
+{% empty %}
+<p>Вопросов пока нет.</p>
+{% endfor %}
+
+{% include "includes/paginator.html" %}
+{% endblock %}

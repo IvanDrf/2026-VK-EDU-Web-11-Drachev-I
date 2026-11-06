@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ question.title }} — AskHub{% endblock %}
+
+{% block content %}
+<div class="card question-card question-detail">
+    <div class="card-body">
+        <div class="d-flex">
+            <div class="question-side d-flex flex-column align-items-center">
+                <img src="{% static 'img/user.png' %}" alt="Аватарка" class="question-avatar">
+                <span class="question-author" title="{{ question.author }}">{{ question.author }}</span>
+                <div class="vote-box d-flex flex-column align-items-center">
+                    <button type="button" class="btn btn-sm vote-up" aria-label="Нравится"
+                        aria-pressed="false">▲</button>
+                    <span class="vote-count fw-bold">{{ question.votes }}</span>
+                    <button type="button" class="btn btn-sm vote-down" aria-label="Не нравится"
+                        aria-pressed="false">▼</button>
+                </div>
+            </div>
+
+            <div class="question-content flex-grow-1">
+                <h5 class="question-title">{{ question.title }}</h5>
+                <div class="question-full-text">
+                    <p>{{ question.text }}</p>
+                </div>
+
+                <div class="question-tags d-flex flex-wrap mt-3">
+                    {% for tag in question.tags %}
+                    <a href="{% url 'tag' tag %}" class="tag">{{ tag }}</a>
+                    {% endfor %}
+                </div>
+
+                <div class="question-meta d-flex justify-content-between align-items-center mt-3">
+                    <small class="question-date text-muted" title="Опубликовано {{ question.created_at }}">
+                        {{ question.created_at }}
+                    </small>
+                    <span class="question-answers badge rounded-pill">{{ question.answers_count }} ответов</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2 class="answers-title">Ответы <span class="answers-count">{{ answers|length }}</span></h2>
+
+<div class="answers-list">
+    {% for answer in answers %}
+    <div class="card answer-card">
+        <div class="card-body">
+            <div class="d-flex">
+                <div class="question-side d-flex flex-column align-items-center">
+                    <img src="{% static 'img/user.png' %}" alt="Аватарка" class="question-avatar">
+                    <span class="question-author" title="{{ answer.author }}">{{ answer.author }}</span>
+                    <div class="vote-box d-flex flex-column align-items-center">
+                        <button type="button" class="btn btn-sm vote-up" aria-label="Нравится"
+                            aria-pressed="false">▲</button>
+                        <span class="vote-count fw-bold">{{ answer.votes }}</span>
+                        <button type="button" class="btn btn-sm vote-down" aria-label="Не нравится"
+                            aria-pressed="false">▼</button>
+                    </div>
+                </div>
+
+                <div class="question-content flex-grow-1">
+                    <div class="answer-text">
+                        <p>{{ answer.text }}</p>
+                    </div>
+                    <div class="question-meta d-flex justify-content-between align-items-center mt-3">
+                        <small class="question-date text-muted" title="Опубликовано {{ answer.created_at }}">
+                            {{ answer.created_at }}
+                        </small>
+                        <button type="button"
+                            class="btn btn-sm btn-outline-secondary answer-reply-btn">Ответить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p>Ответов пока нет.</p>
+    {% endfor %}
+</div>
+
+<div class="card answer-form-card mt-4">
+    <div class="card-body">
+        <h3 class="answer-form-title">Ваш ответ</h3>
+        <form action="{% url 'question' question.id %}" method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <textarea class="form-control" id="answer-text" name="text" rows="6"
+                    placeholder="Напишите ответ подробно" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Отправить ответ</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
