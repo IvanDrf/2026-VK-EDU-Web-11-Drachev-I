@@ -11,6 +11,9 @@ class ProfileInline(admin.StackedInline):
     max_num = 1
     can_delete = False
 
+    def has_add_permission(self, request, obj=None):
+        return obj is not None and super().has_add_permission(request, obj)
+
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):

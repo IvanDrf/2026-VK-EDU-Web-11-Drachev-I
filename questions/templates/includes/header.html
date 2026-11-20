@@ -1,38 +1,38 @@
 {% load static %}
-    <header>
-        <div class="search-header">
-            <div class="header-left">
-                <a href="{% url 'index' %}" class="no-underline-link" id="header-logo">
-                    <span class="site-logo">AskHub</span>
-                </a>
-            </div>
-
-            <div class="header-center">
-                <div class="input-group search-input">
-                    <input type="text" class="form-control" placeholder="Какая тема интересует" aria-label="Поиск темы"
-                        aria-describedby="button-addon2">
-                    <button class="btn btn-outline-success" type="button" id="button-addon2">Найти</button>
-                </div>
-            </div>
-
-            <div class="header-user-info header-right">
-                <a href="{% url 'hot' %}" class="btn btn-danger">Лучшие</a>
-                <a href="{% url 'ask' %}" class="btn btn-primary ask-btn">Задать вопрос</a>
-                {% if user_authenticated %}
-                <img src="{% static 'img/user.png' %}" alt="Аватарка" class="user-avatar">
-                <div class="header-user-actions">
-                    <span class="user-name">{{ user.username }}</span>
-                    <nav class="user-links" aria-label="Аккаунт">
-                        <a href="{% url 'profile' %}" class="no-underline-link">Настройки</a>
-                        <a href="{% url 'login' %}" class="no-underline-link">Выйти</a>
-                    </nav>
-                </div>
-                {% else %}
-                <nav class="user-links" aria-label="Аккаунт">
-                    <a href="{% url 'login' %}" class="no-underline-link">Войти</a>
-                    <a href="{% url 'signup' %}" class="no-underline-link">Регистрация</a>
-                </nav>
-                {% endif %}
+<header>
+    <div class="search-header">
+        <div class="header-left">
+            <a href="{% url 'index' %}" class="no-underline-link" id="header-logo"><span class="site-logo">AskHub</span></a>
+        </div>
+        <div class="header-center">
+            <div class="input-group search-input">
+                <input type="text" class="form-control" placeholder="Какая тема интересует" aria-label="Поиск темы" aria-describedby="button-addon2">
+                <button class="btn btn-outline-success" type="button" id="button-addon2">Найти</button>
             </div>
         </div>
-    </header>
+        <div class="header-user-info header-right">
+            <a href="{% url 'hot' %}" class="btn btn-danger">Лучшие</a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'ask' %}" class="btn btn-primary ask-btn">Задать вопрос</a>
+            <img src="{% if user.profile %}{{ user.profile.avatar_url }}{% else %}{% static 'img/user.png' %}{% endif %}" alt="Аватарка" class="user-avatar">
+            <div class="header-user-actions">
+                <span class="user-name">{{ user.username }}</span>
+                <nav class="user-links" aria-label="Аккаунт">
+                    <a href="{% url 'profile' %}" class="no-underline-link">Настройки</a>
+                    <form action="{% url 'logout' %}" method="post" class="logout-form">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                        <button type="submit" class="logout-link">Выйти</button>
+                    </form>
+                </nav>
+            </div>
+            {% else %}
+            <span title="Войдите, чтобы задать вопрос"><button type="button" class="btn btn-primary ask-btn" disabled>Задать вопрос</button></span>
+            <nav class="user-links" aria-label="Аккаунт">
+                <a href="{% url 'login' %}?next={{ request.get_full_path|urlencode }}" class="no-underline-link">Войти</a>
+                <a href="{% url 'signup' %}" class="no-underline-link">Регистрация</a>
+            </nav>
+            {% endif %}
+        </div>
+    </div>
+</header>

@@ -14,25 +14,24 @@ from core.models import Profile
 from questions.models import Answer, AnswerLike, Question, QuestionLike, Tag
 
 
-def generate_like_pairs(
-    target_ids: list[int], user_ids: list[int], count: int, rng: Random
-) -> Iterator[tuple[int, int]]:
+def generate_like_pairs(target_ids: list[int], user_ids: list[int], count: int, rng: Random) -> Iterator[tuple[int, int]]:
     if not 0 <= count <= len(target_ids) * len(user_ids):
-        raise ValueError("Количество лайков превышает число уникальных пар.")
+        raise ValueError("Количество лайков превышает число уникальных пар")
 
     targets = target_ids.copy()
     rng.shuffle(targets)
     remaining = count
     for index, target_id in enumerate(targets):
         targets_left = len(targets) - index
-        # Leave enough capacity for all remaining likes, while allowing each
-        # target to receive between zero and roughly twice the current average.
+
         minimum = max(0, remaining - (targets_left - 1) * len(user_ids))
         average_ceiling = (remaining + targets_left - 1) // targets_left
         maximum = min(len(user_ids), remaining, 2 * average_ceiling)
+
         target_count = rng.randint(minimum, maximum)
         for user_id in rng.sample(user_ids, target_count):
             yield target_id, user_id
+
         remaining -= target_count
 
 
@@ -132,7 +131,6 @@ class Command(BaseCommand):
                 ),
             )
 
-            # Keep spare capacity so even small ratios produce different scores.
             question_likes = min(ratio * 100, len(questions) * len(users) // 2)
             create(
                 QuestionLike,

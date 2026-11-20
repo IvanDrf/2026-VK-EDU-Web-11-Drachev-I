@@ -1,7 +1,7 @@
 <div class="card question-card">
     <div class="card-body">
         <div class="d-flex">
-            {% include "includes/author_votes.html" with author=question.author votes=question.votes only %}
+            {% include "includes/author_votes.html" with author=question.author votes=question.votes user_vote=question.user_vote vote_url=question.get_vote_url user=request.user only %}
 
             <div class="question-content flex-grow-1">
                 <h2 class="card-title question-title" title="{{ question.title }}">

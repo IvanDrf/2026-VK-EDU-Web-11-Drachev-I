@@ -2,11 +2,11 @@ from django.core.paginator import EmptyPage, Page, PageNotAnInteger, Paginator
 from django.http import HttpRequest
 from django.shortcuts import render
 
-from .models import Question, Tag
+from .models import PAGE_SIZE, Question, Tag
 
 
 def render_question_list(request: HttpRequest, queryset, template, **context):
-    page = paginate(queryset, request)
+    page = paginate(queryset, request, PAGE_SIZE)
     return render(request, template, {"questions": page.object_list, "page": page, **context})
 
 
@@ -36,7 +36,7 @@ class PaginationPage(Page):
         return pagination_pages(self)
 
 
-def paginate(objects_list, request: HttpRequest, per_page=10) -> PaginationPage:
+def paginate(objects_list, request: HttpRequest, per_page: int) -> PaginationPage:
     paginator = Paginator(objects_list, per_page)
     try:
         page = paginator.page(request.GET.get("page", 1))

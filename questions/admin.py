@@ -21,7 +21,7 @@ class LikesCountAdmin(LikesCountMixin, admin.ModelAdmin):
 
     def get_queryset(self, request):
         return super().get_queryset(request).annotate(
-            _likes_count=related_count(self.like_model, self.like_field)
+            _likes_count=related_count(self.like_model, self.like_field, value=1)
         )
 
 
@@ -60,7 +60,7 @@ class AnswerInline(LikesCountMixin, admin.TabularInline):
 
     def get_queryset(self, request):
         return super().get_queryset(request).select_related("author").annotate(
-            _likes_count=related_count(AnswerLike, "answer_id")
+            _likes_count=related_count(AnswerLike, "answer_id", value=1)
         )
 
 
@@ -127,9 +127,9 @@ class TagAdmin(admin.ModelAdmin):
 
 @admin.register(QuestionLike)
 class QuestionLikeAdmin(admin.ModelAdmin):
-    list_display = ("id", "user", "question", "created_at")
+    list_display = ("id", "user", "question", "value", "created_at")
     search_fields = ("user__username", "question__title")
-    list_filter = ("created_at",)
+    list_filter = ("value", "created_at")
     list_select_related = ("user", "question")
     raw_id_fields = ("user", "question")
     show_full_result_count = False
@@ -137,9 +137,9 @@ class QuestionLikeAdmin(admin.ModelAdmin):
 
 @admin.register(AnswerLike)
 class AnswerLikeAdmin(admin.ModelAdmin):
-    list_display = ("id", "user", "answer", "created_at")
+    list_display = ("id", "user", "answer", "value", "created_at")
     search_fields = ("user__username", "answer__text")
-    list_filter = ("created_at",)
+    list_filter = ("value", "created_at")
     list_select_related = ("user", "answer")
     raw_id_fields = ("user", "answer")
     show_full_result_count = False
