@@ -1,5 +1,13 @@
 # 2026-VK-EDU-Web-11-Drachev-I
 
+### Заполнение данными
+
+Чтобы заполнить базу данных данными 
+
+```bash
+python manage.py fill_db 200
+```
+
 ### Для запуска через Docker:
 
 1) Создайте .env
@@ -33,17 +41,12 @@ pip install -r requirements.txt
 cat .env.example > .env
 ``` 
 
-4) Запустите docker-compose.yml 
+4) Запустите docker-compose.dev.yml 
 - docker-compose.dev.yml чтобы поднять только PostgreSQL
+
 ```bash
 docker-compose -f docker-compose.dev.yml up -d --build
 ```
-
-- docker-compose.yml чтобы поднять приложение и PostgreSQL
-```bash
-docker-compose up -d --build
-```
-
 
 5) Запустите приложение
 
