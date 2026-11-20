@@ -33,7 +33,19 @@ pip install -r requirements.txt
 cat .env.example > .env
 ``` 
 
-4) Запустите приложение
+4) Запустите docker-compose.yml 
+- docker-compose.dev.yml чтобы поднять только PostgreSQL
+```bash
+docker-compose -f docker-compose.dev.yml up -d --build
+```
+
+- docker-compose.yml чтобы поднять приложение и PostgreSQL
+```bash
+docker-compose up -d --build
+```
+
+
+5) Запустите приложение
 
 ```bash
 python manage.py runserver
