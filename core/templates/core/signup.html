@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Регистрация — AskHub{% endblock %}
+{% block row_class %}justify-content-center{% endblock %}
+{% block main_class %}col-lg-8 col-xl-7{% endblock %}
+{% block content %}
+<div class="card question-card"><div class="card-body">
+    <h1 class="auth-title">Регистрация</h1>
+    <p class="auth-subtitle">Создайте аккаунт, чтобы задавать вопросы и отвечать другим.</p>
+    <form action="{% url 'signup' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% include "includes/form_errors.html" %}
+        {% include "includes/avatar_upload.html" %}
+        {% for field in form %}{% if field.name != 'avatar' %}{% include "includes/form_field.html" %}{% endif %}{% endfor %}
+        <div class="form-actions d-flex justify-content-end">
+            <a href="{% url 'index' %}" class="btn btn-outline-secondary">Отмена</a>
+            <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+        </div>
+    </form>
+    <p class="auth-footer">Уже есть аккаунт? <a href="{% url 'login' %}">Войти</a></p>
+</div></div>
+{% endblock %}

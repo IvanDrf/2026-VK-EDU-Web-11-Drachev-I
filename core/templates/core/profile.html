@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Настройки профиля — AskHub{% endblock %}
+{% block row_class %}justify-content-center{% endblock %}
+{% block main_class %}col-lg-7 col-xl-6{% endblock %}
+{% block content %}
+<div class="card question-card"><div class="card-body">
+    <h1 class="auth-title">Настройки профиля</h1>
+    <p class="auth-subtitle">Измените данные аккаунта и сохраните изменения.</p>
+    <form action="{% url 'profile' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% include "includes/form_errors.html" %}
+        {% include "includes/avatar_upload.html" %}
+        {% for field in form %}{% if field.name != 'avatar' %}{% include "includes/form_field.html" %}{% endif %}{% endfor %}
+        <div class="form-actions d-flex justify-content-end">
+            <a href="{% url 'index' %}" class="btn btn-outline-secondary">Отмена</a>
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+        </div>
+    </form>
+</div></div>
+{% endblock %}

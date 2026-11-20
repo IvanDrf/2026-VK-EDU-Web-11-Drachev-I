@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Задать вопрос — AskHub{% endblock %}
+{% block content %}
+<div class="card question-card"><div class="card-body">
+    <h1 class="auth-title">Задать вопрос</h1>
+    <form action="{% url 'ask' %}" method="post">
+        {% csrf_token %}
+        {% include "includes/form_errors.html" %}
+        {% for field in form %}{% include "includes/form_field.html" %}{% endfor %}
+        <div class="form-actions d-flex justify-content-end">
+            <a href="{% url 'index' %}" class="btn btn-outline-secondary">Отмена</a>
+            <button type="submit" class="btn btn-primary">Опубликовать вопрос</button>
+        </div>
+    </form>
+</div></div>
+{% endblock %}

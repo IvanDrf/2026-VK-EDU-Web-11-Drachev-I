@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}{{ question.title }} — AskHub{% endblock %}
+
+{% block content %}
+<div class="card question-card question-detail">
+    <div class="card-body">
+        <div class="d-flex">
+            {% include "includes/author_votes.html" with author=question.author votes=question.votes user_vote=question.user_vote vote_url=question.get_vote_url user=request.user only %}
+
+            <div class="question-content flex-grow-1">
+                <h1 class="question-title">{{ question.title }}</h1>
+                <div class="question-full-text">
+                    <p>{{ question.text }}</p>
+                </div>
+
+                {% include "includes/tags.html" with tags=question.tags.all %}
+
+                <div class="question-meta d-flex justify-content-between align-items-center mt-3">
+                    <small class="question-date text-muted" title="Опубликовано {{ question.created_at|date:"j E Y, H:i" }}">
+                        {{ question.created_at|date:"j E Y, H:i" }}
+                    </small>
+                    <span class="question-answers badge rounded-pill">{{ question.answers_count }} ответов</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2 id="answers" class="answers-title">Ответы <span class="answers-count">{{ question.answers_count }}</span></h2>
+
+<div class="answers-list">
+    {% for answer in answers %}
+    {% include "includes/answer_card.html" with answer=answer %}
+    {% empty %}
+    <p>Ответов пока нет.</p>
+    {% endfor %}
+</div>
+
+{% include "includes/paginator.html" with anchor="#answers" show_single_page=True %}
+
+<div class="card answer-form-card" id="answer-form">
+    <div class="card-body">
+        <h2 class="answers-title">Ваш ответ</h2>
+        {% if not user.is_authenticated %}
+        <p><a href="{% url 'login' %}?next={{ request.get_full_path|urlencode }}%23answer-form">Войдите</a>, чтобы добавить ответ.</p>
+        {% endif %}
+        <form action="{{ request.get_full_path }}#answer-form" method="post">
+            {% csrf_token %}
+            {% include "includes/form_errors.html" %}
+            <fieldset {% if not user.is_authenticated %}disabled title="Войдите, чтобы добавить ответ"{% endif %}>
+                {% include "includes/form_field.html" with field=form.text %}
+                <button type="submit" class="btn btn-primary">Отправить ответ</button>
+            </fieldset>
+        </form>
+    </div>
+</div>
+{% endblock %}

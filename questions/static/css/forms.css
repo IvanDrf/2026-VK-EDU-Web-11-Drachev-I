@@ -1,0 +1,19 @@
+.has-errors .form-control { border-color: #dc3545; }
+.invalid-feedback ul { margin: 0; padding-left: 1.2rem; }
+.form-text ul { padding-left: 1.2rem; }
+.logout-form { margin: 0; }
+.logout-link {
+    padding: 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    color: #595959;
+    cursor: pointer;
+}
+.logout-link:hover { color: #198754; text-decoration: underline; }
+.answer-card { scroll-margin-top: 1rem; }
+.answer-card:target { outline: 2px solid #0d6efd; }
+.answer-status[role="checkbox"] { cursor: pointer; }
+.header-user-info { flex-wrap: wrap; }
+.user-name { max-width: 12rem; overflow: hidden; text-overflow: ellipsis; }
+#ajax-error { position: sticky; top: .5rem; z-index: 10; }
