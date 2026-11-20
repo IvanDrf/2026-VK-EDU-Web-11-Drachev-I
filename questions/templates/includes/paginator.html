@@ -1,9 +1,9 @@
-{% if page.has_other_pages %}
-<nav aria-label="Навигация по страницам" class="mt-4">
+{% if page.has_other_pages or show_single_page %}
+<nav aria-label="{% if anchor %}Страницы ответов{% else %}Навигация по страницам{% endif %}" class="my-4">
     <ul class="pagination justify-content-center">
         {% if page.has_previous %}
         <li class="page-item">
-            <a class="page-link" href="?page={{ page.previous_page_number }}">Назад</a>
+            <a class="page-link" href="?page={{ page.previous_page_number }}{{ anchor|default:'' }}">Назад</a>
         </li>
         {% else %}
         <li class="page-item disabled"><span class="page-link">Назад</span></li>
@@ -16,14 +16,14 @@
         </li>
         {% else %}
         <li class="page-item">
-            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+            <a class="page-link" href="?page={{ num }}{{ anchor|default:'' }}">{{ num }}</a>
         </li>
         {% endif %}
         {% endfor %}
 
         {% if page.has_next %}
         <li class="page-item">
-            <a class="page-link" href="?page={{ page.next_page_number }}">Вперёд</a>
+            <a class="page-link" href="?page={{ page.next_page_number }}{{ anchor|default:'' }}">Вперёд</a>
         </li>
         {% else %}
         <li class="page-item disabled"><span class="page-link">Вперёд</span></li>

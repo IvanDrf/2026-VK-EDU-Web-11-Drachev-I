@@ -7,7 +7,7 @@ PER_PAGE = 10
 
 
 def index(request: HttpRequest):
-    questions = find_answers_amount(QUESTIONS, ANSWERS)
+    questions = sorted(find_answers_amount(QUESTIONS, ANSWERS), key=lambda q: q["created_at"], reverse=True)
 
     page = paginate(questions, request, per_page=PER_PAGE)
     return render(
@@ -16,25 +16,22 @@ def index(request: HttpRequest):
         context={
             "questions": page.object_list,
             "page": page,
-            "page_title": "Новые вопросы",
-            "user_authenticated": True,
+            "page_title": "Вопросы",
+            "user_authenticated": False,
         },
     )
 
 
 def find_answers_amount(questions: list[dict], answers: list[dict]) -> list[dict]:
-    counts: dict[str, int] = {}
+    counts: dict[int, int] = {}
     for answer in answers:
         counts[answer["question_id"]] = counts.get(answer["question_id"], 0) + 1
 
-    for question in questions:
-        question["answers_count"] = counts.get(question["id"], 0)
-
-    return questions
+    return [{**question, "answers_count": counts.get(question["id"], 0)} for question in questions]
 
 
 def tag(request: HttpRequest, tag_name: str):
-    questions = find_questions_with_tag(QUESTIONS, tag_name)
+    questions = find_answers_amount(find_questions_with_tag(QUESTIONS, tag_name), ANSWERS)
 
     page = paginate(questions, request, per_page=PER_PAGE)
     return render(
@@ -44,7 +41,7 @@ def tag(request: HttpRequest, tag_name: str):
             "questions": page.object_list,
             "page": page,
             "tag_name": tag_name,
-            "user_authenticated": True,
+            "user_authenticated": False,
         },
     )
 
@@ -60,17 +57,17 @@ def find_questions_with_tag(questions: list[dict], tag_name: str) -> list[dict]:
 
 
 def hot(request: HttpRequest):
-    best_questions = sorted(QUESTIONS, key=lambda q: q.get("votes", 0), reverse=True)
+    best_questions = sorted(find_answers_amount(QUESTIONS, ANSWERS), key=lambda q: q.get("votes", 0), reverse=True)
 
-    page = paginate(best_questions, request)
+    page = paginate(best_questions, request, per_page=PER_PAGE)
     return render(
         request=request,
-        template_name="questions/index.html",
+        template_name="questions/hot.html",
         context={
             "questions": page.object_list,
             "page": page,
-            "page_title": "Новые вопросы",
-            "user_authenticated": True,
+            "page_title": "Лучшие вопросы",
+            "user_authenticated": False,
         },
     )
 
@@ -81,33 +78,26 @@ def question(request: HttpRequest, question_id: int):
     if not q:
         return HttpResponseNotFound(content="вопрос с таким id не найден")
 
+    page = paginate(answers, request, per_page=PER_PAGE)
     return render(
         request=request,
         template_name="questions/question.html",
         context={
             "question": q,
-            "answers": answers,
-            "user_authenticated": True,
+            "answers": page.object_list,
+            "page": page,
+            "user_authenticated": False,
         },
     )
 
 
 def find_question_info(questions: list, answers: list, question_id: int) -> tuple[dict | None, list[dict]]:
-    answs = []
-    q = None
+    q = next((question for question in questions if question["id"] == question_id), None)
+    question_answers = [answer for answer in answers if answer["question_id"] == question_id]
+    if q is None:
+        return None, question_answers
 
-    for question, answer in zip(questions, answers):
-        if question["id"] == question_id:
-            q = question
-
-        if answer["question_id"] == question_id:
-            answs.append(answer)
-
-    if not q:
-        return None, answs
-
-    q["answers_count"] = len(answs)
-    return q, answs
+    return {**q, "answers_count": len(question_answers)}, question_answers
 
 
 def ask(request: HttpRequest):
@@ -115,6 +105,6 @@ def ask(request: HttpRequest):
         request=request,
         template_name="questions/ask.html",
         context={
-            "user_authenticated": True,
+            "user_authenticated": False,
         },
     )

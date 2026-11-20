@@ -1,63 +1,60 @@
 {% extends "base.html" %}
-{% load static %}
 
-{% block title %}Регистрация — AskHub{% endblock %}
+{% block title %}Регистрация - AskHub{% endblock %}
 {% block row_class %}justify-content-center{% endblock %}
 {% block main_class %}col-lg-8 col-xl-7{% endblock %}
 
 {% block content %}
 <div class="card question-card">
     <div class="card-body">
+
         <h1 class="auth-title">Регистрация</h1>
         <p class="auth-subtitle">Создайте аккаунт, чтобы задавать вопросы и отвечать другим.</p>
 
         <form action="{% url 'signup' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <div class="mb-4 avatar-upload">
-                <label class="form-label">Аватарка</label>
-                <div class="avatar-upload-row">
-                    <div class="avatar-preview">
-                        <img src="{% static 'img/user.png' %}" alt="Превью аватарки" id="avatar-preview-img">
-                    </div>
-                    <div class="avatar-upload-controls">
-                        <label for="avatar" class="btn btn-outline-secondary btn-sm">Выбрать файл</label>
-                        <input type="file" id="avatar" name="avatar" accept="image/*" hidden>
-                    </div>
-                </div>
-            </div>
+            <div class="alert alert-danger form-error" role="alert">Проверьте отмеченные поля и
+                исправьте ошибки.</div>
+
+            {% include "includes/avatar_upload.html" with button_text="Выбрать файл аватарки" %}
 
             <div class="mb-3">
                 <label for="username" class="form-label">Имя пользователя</label>
-                <input type="text" class="form-control" id="username" name="username" placeholder="username" required>
+                <input type="text" class="form-control" id="username" name="username"
+                    placeholder="username" required maxlength="30"
+                    aria-describedby="username-hint username-error" pattern="[A-Za-zА-Яа-яЁё0-9_]+">
+                <div id="username-hint" class="form-text">До 30 символов: буквы, цифры и знак
+                    подчёркивания.</div>
+                <div id="username-error" class="invalid-feedback field-error">Введите имя пользователя:
+                    до 30 символов, только буквы, цифры и знак подчёркивания.</div>
             </div>
 
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="ivan@example.com"
-                    autocomplete="email" required>
+                <input type="email" class="form-control" id="email" name="email"
+                    placeholder="ivan@example.com" autocomplete="email" required maxlength="254"
+                    aria-describedby="email-hint email-error">
+                <div id="email-hint" class="form-text">До 254 символов. Например, ivan@example.com.
+                </div>
+                <div id="email-error" class="invalid-feedback field-error">Введите email в формате
+                    ivan@example.com.</div>
             </div>
 
-            <div class="mb-3">
-                <label for="password" class="form-label">Пароль</label>
-                <input type="password" class="form-control" id="password" name="password" autocomplete="new-password"
-                    required>
-            </div>
+            {% include "includes/password_field.html" with id="password" name="password" label="Пароль" placeholder="" autocomplete="new-password" hint="От 8 до 128 символов. Используйте буквы и цифры." error="Введите пароль длиной от 8 до 128 символов." minlength="8" spacing="mb-3" only %}
 
-            <div class="mb-4">
-                <label for="password2" class="form-label">Повторите пароль</label>
-                <input type="password" class="form-control" id="password2" name="password2" autocomplete="new-password"
-                    required>
-            </div>
+            {% include "includes/password_field.html" with id="password2" name="password2" label="Повторите пароль" placeholder="" autocomplete="new-password" hint="Повторите пароль, от 8 до 128 символов." error="Повторите пароль: от 8 до 128 символов." minlength="8" spacing="mb-4" only %}
 
             <div class="form-actions d-flex justify-content-end">
                 <a href="{% url 'index' %}" class="btn btn-outline-secondary">Отмена</a>
                 <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
             </div>
+
         </form>
 
         <p class="auth-footer">
             Уже есть аккаунт? <a href="{% url 'login' %}">Войти</a>
         </p>
+
     </div>
 </div>
 {% endblock %}

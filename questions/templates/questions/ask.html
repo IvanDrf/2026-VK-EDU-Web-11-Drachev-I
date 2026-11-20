@@ -1,34 +1,69 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block title %}Задать вопрос — AskHub{% endblock %}
+{% block title %}Задать вопрос - AskHub{% endblock %}
+{% block main_class %}col-lg-8 col-xl-9{% endblock %}
 
 {% block content %}
 <div class="card question-card">
     <div class="card-body">
-        <h5 class="card-title">Задать вопрос</h5>
+        <h1 class="auth-title">Задать вопрос</h1>
         <form action="{% url 'ask' %}" method="post">
             {% csrf_token %}
+            <div class="alert alert-danger form-error" role="alert">Проверьте отмеченные поля и исправьте ошибки.</div>
             <div class="mb-4">
-                <label for="question-title" class="form-label">Название вопроса</label>
+                <label for="question-title" class="form-label">
+                    Название вопроса
+                </label>
                 <input type="text" class="form-control" id="question-title" name="title"
-                    placeholder="Например: Что лучше Django или FastAPI?" maxlength="150" required>
+                    placeholder="Например: Что лучше Django или FastAPI?" required maxlength="150"
+                    aria-describedby="question-title-hint question-title-error">
+                <div id="question-title-hint" class="form-text">До 150 символов. Сформулируйте
+                    конкретный вопрос.</div>
+                <div id="question-title-error" class="invalid-feedback field-error">Введите название вопроса длиной до 150 символов.</div>
             </div>
 
             <div class="mb-4">
-                <label for="question-text" class="form-label">Текст вопроса</label>
-                <textarea class="form-control" id="question-text" name="text" rows="8"
-                    placeholder="Опишите ситуацию подробно" required></textarea>
+                <label for="question-text" class="form-label">
+                    Текст вопроса
+                </label>
+                <textarea class="form-control " id="question-text" name="text" rows="8"
+                    placeholder="Опишите ситуацию подробно" required maxlength="10000"
+                    aria-describedby="question-text-hint question-text-error"></textarea>
+                <div id="question-text-hint" class="form-text">До 10 000 символов. Опишите задачу,
+                    ожидаемый результат и ваши попытки.</div>
+                <div id="question-text-error" class="invalid-feedback field-error">Опишите ваш вопрос. Максимум 10 000 символов.</div>
             </div>
 
             <div class="mb-4">
-                <label for="question-tags" class="form-label">Теги</label>
-                <input type="text" class="form-control" id="question-tags" name="tags"
-                    placeholder="python, django, fastapi">
+                <label for="question-tags" class="form-label">
+                    Теги
+                </label>
+                <input type="text" class="form-control " id="question-tags" name="tags"
+                    placeholder="python, django, fastapi" maxlength="150"
+                    aria-describedby="question-tags-hint question-tags-error">
+                <div id="question-tags-hint" class="form-text">До 150 символов. Укажите до 5 тегов через
+                    запятую.</div>
+                <div id="question-tags-error" class="invalid-feedback field-error">Укажите теги через запятую. Максимум 150 символов.</div>
             </div>
 
-            <a href="{% url 'index' %}" class="btn btn-outline-secondary">Отмена</a>
-            <button type="submit" class="btn btn-primary">Опубликовать вопрос</button>
+            <div class="form-actions d-flex justify-content-end">
+                <a href="{% url 'index' %}" class="btn btn-outline-secondary">Отмена</a>
+                <button type="submit" class="btn btn-primary">Опубликовать вопрос</button>
+            </div>
+
         </form>
+
+        <section class="form-example mt-4 p-3 border rounded bg-light" aria-labelledby="example-title">
+            <h2 id="example-title" class="sidebar-title">Пример формы с ошибкой</h2>
+            <div class="alert alert-danger">Не удалось опубликовать вопрос. Проверьте название.</div>
+            <label for="example-field" class="form-label">Название вопроса</label>
+            <input type="text" class="form-control is-invalid" id="example-field" value="Помогите"
+                readonly tabindex="-1" aria-invalid="true" aria-describedby="example-hint example-error">
+            <div id="example-hint" class="form-text">До 150 символов. Сформулируйте конкретный вопрос.</div>
+            <div id="example-error" class="invalid-feedback">Название слишком короткое: уточните, что именно вы хотите узнать.</div>
+        </section>
+
     </div>
 </div>
 {% endblock %}

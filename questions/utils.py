@@ -1,4 +1,4 @@
-from random import randint
+from datetime import UTC, datetime, timedelta
 
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.http import HttpRequest
@@ -13,7 +13,7 @@ def paginate(objects_list, request: HttpRequest, per_page=10):
     except PageNotAnInteger:
         page = paginator.page(1)
     except EmptyPage:
-        page = paginator.page(paginator.num_pages)
+        page = paginator.page(1)
 
     return page
 
@@ -46,30 +46,31 @@ def generate_questions(count: int) -> list[dict]:
                 "author": AUTHORS[i % len(AUTHORS)],
                 "votes": (i * 3) % 20 + 1,
                 "tags": TAGS_POOL[: (i % 3) + 1],
-                "created_at": f"{10 + i % 12} окт 2026, {10 + i % 12}:{i % 60:02d}",
+                "created_at": datetime(2026, 10, 10, 10, tzinfo=UTC) + timedelta(days=i, minutes=i),
             }
         )
 
     return questions
 
 
-def generate_answers(count: int) -> list[dict]:
+def generate_answers(count: int, question_count: int = 35) -> list[dict]:
     answers: list[dict] = []
 
     for i in range(1, count + 1):
         answers.append(
             {
                 "id": i,
-                "question_id": randint(1, count),
+                "question_id": (i - 1) % question_count + 1,
                 "text": (f"Ответ #{i}. Lorem Ipsum is simply dummy text of the printing and typesetting industry."),
                 "author": ["MariaK", "PavelDev", "AnnaS"][i % 3],
                 "votes": (i * 4) % 15 + 1,
-                "created_at": f"11 окт 2026, {15 + i}:10",
+                "created_at": datetime(2026, 12, 1, 15, 10, tzinfo=UTC) + timedelta(hours=i),
             }
         )
 
     return answers
 
 
-QUESTIONS = generate_questions(30)
-ANSWERS = generate_answers(30)
+QUESTIONS = generate_questions(35)
+
+ANSWERS = generate_answers(len(QUESTIONS) * 25, question_count=len(QUESTIONS))
