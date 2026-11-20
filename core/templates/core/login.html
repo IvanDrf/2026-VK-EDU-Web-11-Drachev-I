@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Вход - AskHub{% endblock %}
+{% block row_class %}justify-content-center{% endblock %}
+{% block main_class %}col-lg-6 col-xl-5{% endblock %}
+
+{% block content %}
+<div class="card question-card">
+    <div class="card-body">
+
+        <h1 class="auth-title">Вход</h1>
+        <p class="auth-subtitle">Войдите, чтобы задавать вопросы и отвечать.</p>
+
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            <div class="alert alert-danger form-error" role="alert">Проверьте отмеченные поля и исправьте ошибки.</div>
+            <div class="mb-3">
+                <label for="username" class="form-label">Логин или Email</label>
+                <input type="text" class="form-control" id="username" name="username"
+                    placeholder="IvanDrf" autocomplete="username" required autofocus maxlength="254"
+                    aria-describedby="username-hint username-error">
+                <div id="username-hint" class="form-text">Введите логин или email, не более 254
+                    символов.</div>
+                <div id="username-error" class="invalid-feedback field-error">Введите логин или email.</div>
+            </div>
+
+            {% include "includes/password_field.html" with id="password" name="password" label="Пароль" placeholder="Ваш пароль" autocomplete="current-password" hint="Введите пароль своего аккаунта, не более 128 символов." error="Введите пароль." minlength="" spacing="mb-3" only %}
+
+
+            <div class="form-actions d-flex justify-content-end">
+                <a href="{% url 'index' %}" class="btn btn-outline-secondary">Отмена</a>
+                <button type="submit" class="btn btn-primary">Войти</button>
+            </div>
+
+        </form>
+
+        <p class="auth-footer">
+            Нет аккаунта? <a href="{% url 'signup' %}">Зарегистрироваться</a>
+        </p>
+
+    </div>
+</div>
+{% endblock %}

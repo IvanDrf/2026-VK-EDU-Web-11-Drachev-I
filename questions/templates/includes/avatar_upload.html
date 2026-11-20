@@ -1,0 +1,14 @@
+{% load static %}
+<div class="mb-4 avatar-upload">
+    <label for="avatar" class="form-label">{{ button_text }}</label>
+    <div class="avatar-upload-row">
+        <div class="avatar-preview">
+            <img src="{% static 'img/user.png' %}" alt="Превью аватарки" id="avatar-preview-img">
+        </div>
+        <div class="avatar-upload-controls">
+            <input type="file" class="form-control" id="avatar" name="avatar"
+                accept="image/png,image/jpeg" aria-describedby="avatar-hint">
+            <div id="avatar-hint" class="form-text">PNG или JPEG, до 2 МБ.</div>
+        </div>
+    </div>
+</div>

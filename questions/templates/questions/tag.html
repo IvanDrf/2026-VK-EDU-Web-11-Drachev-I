@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Тег: {{ tag_name }} — AskHub{% endblock %}
+
+{% block content %}
+<div class="tag-header mb-3">
+    <h1 class="tag-header-title">
+        Тег: <span class="tag-header-name">{{ tag_name }}</span>
+    </h1>
+</div>
+
+{% for question in questions %}
+{% include "includes/question_card.html" %}
+{% empty %}
+<p>Вопросов с таким тегом нет.</p>
+{% endfor %}
+
+{% include "includes/paginator.html" %}
+{% endblock %}

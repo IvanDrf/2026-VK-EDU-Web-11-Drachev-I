@@ -1,0 +1,5 @@
+<div class="question-tags d-flex flex-wrap mt-3">
+    {% for tag in tags %}
+    <a href="{{ tag.get_absolute_url }}" class="tag">{{ tag }}</a>
+    {% endfor %}
+</div>

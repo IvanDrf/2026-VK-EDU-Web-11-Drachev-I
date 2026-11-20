@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Настройки профиля - AskHub{% endblock %}
+{% block row_class %}justify-content-center{% endblock %}
+{% block main_class %}col-lg-7 col-xl-6{% endblock %}
+
+{% block content %}
+<div class="card question-card">
+    <div class="card-body">
+
+        <h1 class="auth-title">Настройки профиля</h1>
+        <p class="auth-subtitle">Измените данные аккаунта и сохраните изменения.</p>
+
+        <form action="{% url 'profile' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="alert alert-danger form-error" role="alert">Проверьте отмеченные поля и исправьте ошибки.</div>
+            {% include "includes/avatar_upload.html" with button_text="Выбрать файл аватарки" %}
+
+            <div class="mb-3">
+                <label for="username" class="form-label">Имя пользователя</label>
+                <input type="text" class="form-control" id="username" name="username" value="{{ user.username }}"
+                    autocomplete="username" required maxlength="30" aria-describedby="username-hint username-error"
+                    pattern="[A-Za-zА-Яа-яЁё0-9_]+">
+                <div id="username-hint" class="form-text">До 30 символов: буквы, цифры и знак
+                    подчёркивания.</div>
+                <div id="username-error" class="invalid-feedback field-error">Введите имя пользователя: до 30 символов, только буквы, цифры и знак подчёркивания.</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}"
+                    autocomplete="email" required maxlength="254"
+                    aria-describedby="email-hint email-error">
+                <div id="email-hint" class="form-text">До 254 символов. Например, ivan@example.com.
+                </div>
+                <div id="email-error" class="invalid-feedback field-error">Введите email в формате ivan@example.com.</div>
+            </div>
+
+            <div class="d-flex justify-content-end pt-3 mt-3 border-top">
+                <a href="{% url 'index' %}" class="btn btn-outline-secondary me-2">Отмена</a>
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+            </div>
+
+        </form>
+
+        <section class="form-example mt-4 p-3 border rounded bg-light" aria-labelledby="example-title">
+            <h2 id="example-title" class="sidebar-title">Пример формы с ошибкой</h2>
+            <div class="alert alert-danger">Не удалось сохранить профиль. Проверьте email.</div>
+            <label for="example-field" class="form-label">Email</label>
+            <input type="text" class="form-control is-invalid" id="example-field" value="ivan@example.com"
+                readonly tabindex="-1" aria-invalid="true" aria-describedby="example-hint example-error">
+            <div id="example-hint" class="form-text">До 254 символов. Укажите адрес электронной почты.</div>
+            <div id="example-error" class="invalid-feedback">Этот email уже используется другим аккаунтом.</div>
+        </section>
+
+    </div>
+</div>
+{% endblock %}

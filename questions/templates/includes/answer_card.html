@@ -1,0 +1,25 @@
+    <div class="card answer-card">
+        <div class="card-body">
+            <div class="d-flex">
+                {% include "includes/author_votes.html" with author=answer.author votes=answer.votes only %}
+
+                <div class="question-content flex-grow-1">
+                    {% if answer.is_correct %}
+                    <div class="answer-status is-correct" role="checkbox" aria-checked="true" aria-readonly="true">✓ Правильный ответ</div>
+                    {% else %}
+                    <div class="answer-status" role="checkbox" aria-checked="false" aria-readonly="true">○ Правильный ответ не выбран</div>
+                    {% endif %}
+                    <div class="answer-text">
+                        <p>{{ answer.text }}</p>
+                    </div>
+                    <div class="question-meta d-flex justify-content-between align-items-center mt-3">
+                        <small class="question-date text-muted" title="Опубликовано {{ answer.created_at|date:"j E Y, H:i" }}">
+                            {{ answer.created_at|date:"j E Y, H:i" }}
+                        </small>
+                        <button type="button"
+                            class="btn btn-sm btn-outline-secondary answer-reply-btn">Ответить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
