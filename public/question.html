@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="icon" href="static/img/favicon.ico" type="image/x-icon">
+    <title>Что лучше Django или FastAPI? - AskHub</title>
+</head>
+
+<body>
+    <header>
+        <div class="search-header">
+            <div class="header-left">
+                <a href="/" class="no-underline-link">
+                    <span class="site-logo">AskHub</span>
+                </a>
+            </div>
+
+            <div class="header-center">
+                <div class="input-group search-input">
+                    <input type="text" class="form-control" placeholder="Какая тема интересует" aria-label="Поиск темы">
+                    <button class="btn btn-outline-success" type="button">Найти</button>
+                </div>
+            </div>
+
+            <div class="header-user-info header-right">
+                <a href="/ask.html" class="btn btn-primary ask-btn">Задать вопрос</a>
+                <nav class="user-links" aria-label="Аккаунт">
+                    <a href="/login.html" class="no-underline-link">Войти</a>
+                    <a href="/signup.html" class="no-underline-link">Регистрация</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="container my-4">
+        <div class="row g-4">
+
+            <main class="col-lg-8 col-xl-9">
+                <div class="card question-card question-detail">
+                    <div class="card-body">
+                        <div class="d-flex">
+
+                            <div class="question-side d-flex flex-column align-items-center">
+                                <img src="static/img/user.png" alt="Аватарка" class="question-avatar">
+                                <span class="question-author" title="IvanDrf">IvanDrf</span>
+                                <div class="vote-box d-flex flex-column align-items-center">
+                                    <button type="button" class="btn btn-sm vote-up" aria-label="Нравится"
+                                        aria-pressed="false">▲</button>
+                                    <span class="vote-count fw-bold">5</span>
+                                    <button type="button" class="btn btn-sm vote-down" aria-label="Не нравится"
+                                        aria-pressed="false">▼</button>
+                                </div>
+                            </div>
+
+                            <div class="question-content flex-grow-1">
+                                <h1 class="question-title">
+                                    Что лучше Django или FastAPI?
+                                </h1>
+
+                                <div class="question-full-text">
+                                    <p>Я выбираю между Django и FastAPI, подскажите что лучше для моего проекта</p>
+                                </div>
+
+                                <div class="question-tags d-flex flex-wrap mt-3">
+                                    <a href="/tag.html" class="tag">python</a>
+                                    <a href="/tag.html" class="tag">django</a>
+                                    <a href="/tag.html" class="tag">fastapi</a>
+                                    <a href="/tag.html" class="tag">backend</a>
+                                </div>
+
+                                <div class="question-meta d-flex justify-content-between align-items-center mt-3">
+                                    <small class="question-date text-muted" title="Опубликовано 12 октября 2026, 14:32">
+                                        12 окт 2026, 14:32
+                                    </small>
+                                    <span class="question-answers badge rounded-pill">2 ответа</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <h2 id="answers" class="answers-title">Ответы <span class="answers-count">2</span></h2>
+                <div class="answers-list">
+                    <div class="card answer-card">
+                        <div class="card-body">
+                            <div class="d-flex">
+
+                                <div class="question-side d-flex flex-column align-items-center">
+                                    <img src="static/img/user.png" alt="Аватарка" class="question-avatar">
+                                    <span class="question-author" title="MariaK">MariaK</span>
+                                    <div class="vote-box d-flex flex-column align-items-center">
+                                        <button type="button" class="btn btn-sm vote-up" aria-label="Нравится"
+                                            aria-pressed="false">▲</button>
+                                        <span class="vote-count fw-bold">17</span>
+                                        <button type="button" class="btn btn-sm vote-down" aria-label="Не нравится"
+                                            aria-pressed="false">▼</button>
+                                    </div>
+                                </div>
+
+                                <div class="question-content flex-grow-1">
+                                    <div class="answer-status is-correct" role="checkbox" aria-checked="true"
+                                        aria-readonly="true">✓ Правильный ответ</div>
+                                    <div class="answer-text">
+                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                            Lorem
+                                            Ipsum has been the industry's standard dummy text ever since 1966, when
+                                            designers at Letraset and James Mosley, the librarian at St Bride Printing
+                                            Library in London, took a 1914 Cicero translation and scrambled it to make
+                                            dummy
+                                            text for Letraset's Body Type sheets. It has survived not only many decades,
+                                            but
+                                            also the leap into electronic typesetting, remaining essentially unchanged.
+                                            It
+                                            was popularised thanks to these sheets and more recently with desktop
+                                            publishing
+                                            software like Aldus PageMaker and Microsoft Word including versions of Lorem
+                                            Ipsum.</p>
+                                    </div>
+
+                                    <div class="question-meta d-flex justify-content-between align-items-center mt-3">
+                                        <small class="question-date text-muted"
+                                            title="Опубликовано 12 октября 2026, 15:10">
+                                            12 окт 2026, 15:10
+                                        </small>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary answer-reply-btn">
+                                            Ответить
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card answer-card">
+                        <div class="card-body">
+                            <div class="d-flex">
+
+                                <div class="question-side d-flex flex-column align-items-center">
+                                    <img src="static/img/user.png" alt="Аватарка" class="question-avatar">
+                                    <span class="question-author" title="PavelDev">PavelDev</span>
+                                    <div class="vote-box d-flex flex-column align-items-center">
+                                        <button type="button" class="btn btn-sm vote-up" aria-label="Нравится"
+                                            aria-pressed="false">▲</button>
+                                        <span class="vote-count fw-bold">8</span>
+                                        <button type="button" class="btn btn-sm vote-down" aria-label="Не нравится"
+                                            aria-pressed="false">▼</button>
+                                    </div>
+                                </div>
+
+                                <div class="question-content flex-grow-1">
+                                    <div class="answer-status" role="checkbox" aria-checked="false"
+                                        aria-readonly="true">○ Правильный ответ не выбран</div>
+                                    <div class="answer-text">
+                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                            Lorem
+                                            Ipsum has been the industry's standard dummy text ever since 1966, when
+                                            designers at Letraset and James Mosley, the librarian at St Bride Printing
+                                            Library in London, took a 1914 Cicero translation and scrambled it to make
+                                            dummy
+                                            text for Letraset's Body Type sheets. It has survived not only many decades,
+                                            but
+                                            also the leap into electronic typesetting, remaining essentially unchanged.
+                                            It
+                                            was popularised thanks to these sheets and more recently with desktop
+                                            publishing
+                                            software like Aldus PageMaker and Microsoft Word including versions of Lorem
+                                            Ipsum.
+                                        </p>
+                                    </div>
+
+                                    <div class="question-meta d-flex justify-content-between align-items-center mt-3">
+                                        <small class="question-date text-muted"
+                                            title="Опубликовано 12 октября 2026, 16:02">
+                                            12 окт 2026, 16:02
+                                        </small>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary answer-reply-btn">
+                                            Ответить
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <nav aria-label="Страницы ответов" class="my-4">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled"><span class="page-link">Назад</span></li>
+                        <li class="page-item active" aria-current="page"><span class="page-link">1</span></li>
+                        <li class="page-item"><a class="page-link" href="/question.html?page=2#answers">2</a></li>
+                        <li class="page-item"><a class="page-link" href="/question.html?page=3#answers">3</a></li>
+                        <li class="page-item"><a class="page-link" href="/question.html?page=2#answers">Вперёд</a></li>
+                    </ul>
+                </nav>
+                <div class="card answer-form-card">
+                    <div class="card-body">
+
+                        <h2 class="answers-title">Ваш ответ</h2>
+
+                        <form action="/question.html" method="post">
+                            <div class="mb-3">
+                                <label for="answer-text" class="form-label">Текст ответа</label>
+                                <textarea class="form-control" maxlength="10000" aria-describedby="answer-hint answer-text-error"
+                                    id="answer-text" name="text" rows="6" placeholder="Напишите ответ подробно"
+                                    required></textarea>
+                                <div id="answer-hint" class="form-text">До 10 000 символов. Объясните предложенное
+                                    решение.</div>
+                                <div id="answer-text-error" class="invalid-feedback field-error">Введите текст ответа. Максимум 10 000 символов.</div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Отправить ответ</button>
+
+                        </form>
+
+                    </div>
+                </div>
+            </main>
+            <aside class="col-lg-4 col-xl-3">
+                <div class="sidebar-card">
+                    <h2 class="sidebar-title">Популярные теги</h2>
+                    <div class="sidebar-tags d-flex flex-wrap">
+                        <a href="/tag.html" class="tag">python <span class="tag-count">124</span></a>
+                        <a href="/tag.html" class="tag">javascript <span class="tag-count">98</span></a>
+                        <a href="/tag.html" class="tag">django <span class="tag-count">76</span></a>
+                        <a href="/tag.html" class="tag">react <span class="tag-count">61</span></a>
+                        <a href="/tag.html" class="tag">fastapi <span class="tag-count">54</span></a>
+                        <a href="/tag.html" class="tag">docker <span class="tag-count">43</span></a>
+                        <a href="/tag.html" class="tag">postgresql <span class="tag-count">38</span></a>
+                        <a href="/tag.html" class="tag">html <span class="tag-count">35</span></a>
+                        <a href="/tag.html" class="tag">css <span class="tag-count">33</span></a>
+                        <a href="/tag.html" class="tag">git <span class="tag-count">29</span></a>
+                    </div>
+                </div>
+                <section class="sidebar-card">
+                    <h2 class="sidebar-title">Лучшие пользователи</h2>
+                    <ol class="best-members">
+                        <li><span>MariaK</span> <span class="text-muted">1 240 баллов</span></li>
+                        <li><span>IvanDrf</span> <span class="text-muted">980 баллов</span></li>
+                        <li><span>PavelDev</span> <span class="text-muted">760 баллов</span></li>
+                    </ol>
+                </section>
+            </aside>
+
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container d-flex flex-wrap justify-content-between gap-2">
+            <span>AskHub - вопросы и обсуждения</span>
+            <a href="/index.html">На главную</a>
+        </div>
+    </footer>
+</body>
+
+</html>

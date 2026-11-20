@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="icon" href="static/img/favicon.ico" type="image/x-icon">
+    <title>Задать вопрос - AskHub</title>
+</head>
+
+<body>
+    <header>
+        <div class="search-header">
+            <div class="header-left">
+                <a href="/" class="no-underline-link" id="header-logo">
+                    <span class="site-logo">AskHub</span>
+                </a>
+            </div>
+
+            <div class="header-center">
+                <div class="input-group search-input">
+                    <input type="text" class="form-control" placeholder="Какая тема интересует" aria-label="Поиск темы"
+                        aria-describedby="button-addon2">
+                    <button class="btn btn-outline-success" type="button" id="button-addon2">Найти</button>
+                </div>
+            </div>
+
+            <div class="header-user-info header-right">
+                <a href="/ask.html" class="btn btn-primary ask-btn">Задать вопрос</a>
+                <nav class="user-links" aria-label="Аккаунт">
+                    <a href="/login.html" class="no-underline-link">Войти</a>
+                    <a href="/signup.html" class="no-underline-link">Регистрация</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="container my-4">
+        <div class="row g-4">
+
+            <main class="col-lg-8 col-xl-9">
+
+                <div class="card question-card">
+                    <div class="card-body">
+                        <h1 class="auth-title">Задать вопрос</h1>
+                        <form action="/ask.html" method="post">
+                            <div class="alert alert-danger form-error" role="alert">Проверьте отмеченные поля и исправьте ошибки.</div>
+                            <div class="mb-4">
+                                <label for="question-title" class="form-label">
+                                    Название вопроса
+                                </label>
+                                <input type="text" class="form-control" id="question-title" name="title"
+                                    placeholder="Например: Что лучше Django или FastAPI?" required maxlength="150"
+                                    aria-describedby="question-title-hint question-title-error">
+                                <div id="question-title-hint" class="form-text">До 150 символов. Сформулируйте
+                                    конкретный вопрос.</div>
+                                <div id="question-title-error" class="invalid-feedback field-error">Введите название вопроса длиной до 150 символов.</div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="question-text" class="form-label">
+                                    Текст вопроса
+                                </label>
+                                <textarea class="form-control " id="question-text" name="text" rows="8"
+                                    placeholder="Опишите ситуацию подробно" required maxlength="10000"
+                                    aria-describedby="question-text-hint question-text-error"></textarea>
+                                <div id="question-text-hint" class="form-text">До 10 000 символов. Опишите задачу,
+                                    ожидаемый результат и ваши попытки.</div>
+                                <div id="question-text-error" class="invalid-feedback field-error">Опишите ваш вопрос. Максимум 10 000 символов.</div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="question-tags" class="form-label">
+                                    Теги
+                                </label>
+                                <input type="text" class="form-control " id="question-tags" name="tags"
+                                    placeholder="python, django, fastapi" maxlength="150"
+                                    aria-describedby="question-tags-hint question-tags-error">
+                                <div id="question-tags-hint" class="form-text">До 150 символов. Укажите до 5 тегов через
+                                    запятую.</div>
+                                <div id="question-tags-error" class="invalid-feedback field-error">Укажите теги через запятую. Максимум 150 символов.</div>
+                            </div>
+
+                            <div class="form-actions d-flex justify-content-end">
+                                <a href="/" class="btn btn-outline-secondary">Отмена</a>
+                                <button type="submit" class="btn btn-primary">Опубликовать вопрос</button>
+                            </div>
+
+                        </form>
+
+                        <section class="form-example mt-4 p-3 border rounded bg-light" aria-labelledby="example-title">
+                            <h2 id="example-title" class="sidebar-title">Пример формы с ошибкой</h2>
+                            <div class="alert alert-danger">Не удалось опубликовать вопрос. Проверьте название.</div>
+                            <label for="example-field" class="form-label">Название вопроса</label>
+                            <input type="text" class="form-control is-invalid" id="example-field" value="Помогите"
+                                readonly tabindex="-1" aria-invalid="true" aria-describedby="example-hint example-error">
+                            <div id="example-hint" class="form-text">До 150 символов. Сформулируйте конкретный вопрос.</div>
+                            <div id="example-error" class="invalid-feedback">Название слишком короткое: уточните, что именно вы хотите узнать.</div>
+                        </section>
+
+                    </div>
+                </div>
+
+            </main>
+
+            <aside class="col-lg-4 col-xl-3">
+                <div class="sidebar-card">
+                    <h2 class="sidebar-title">Популярные теги</h2>
+                    <div class="sidebar-tags d-flex flex-wrap">
+                        <a href="/tag.html" class="tag">python <span class="tag-count">124</span></a>
+                        <a href="/tag.html" class="tag">javascript <span class="tag-count">98</span></a>
+                        <a href="/tag.html" class="tag">django <span class="tag-count">76</span></a>
+                        <a href="/tag.html" class="tag">react <span class="tag-count">61</span></a>
+                        <a href="/tag.html" class="tag">fastapi <span class="tag-count">54</span></a>
+                        <a href="/tag.html" class="tag">docker <span class="tag-count">43</span></a>
+                        <a href="/tag.html" class="tag">postgresql <span class="tag-count">38</span></a>
+                        <a href="/tag.html" class="tag">html <span class="tag-count">35</span></a>
+                        <a href="/tag.html" class="tag">css <span class="tag-count">33</span></a>
+                        <a href="/tag.html" class="tag">git <span class="tag-count">29</span></a>
+                    </div>
+                </div>
+                <section class="sidebar-card">
+                    <h2 class="sidebar-title">Лучшие пользователи</h2>
+                    <ol class="best-members">
+                        <li><span>MariaK</span> <span class="text-muted">1 240 баллов</span></li>
+                        <li><span>IvanDrf</span> <span class="text-muted">980 баллов</span></li>
+                        <li><span>PavelDev</span> <span class="text-muted">760 баллов</span></li>
+                    </ol>
+                </section>
+            </aside>
+
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container d-flex flex-wrap justify-content-between gap-2">
+            <span>AskHub - вопросы и обсуждения</span>
+            <a href="/index.html">На главную</a>
+        </div>
+    </footer>
+</body>
+
+</html>
