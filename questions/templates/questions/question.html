@@ -14,7 +14,7 @@
                     <p>{{ question.text }}</p>
                 </div>
 
-                {% include "includes/tags.html" with tags=question.tags %}
+                {% include "includes/tags.html" with tags=question.tags.all %}
 
                 <div class="question-meta d-flex justify-content-between align-items-center mt-3">
                     <small class="question-date text-muted" title="Опубликовано {{ question.created_at|date:"j E Y, H:i" }}">
@@ -42,7 +42,7 @@
 <div class="card answer-form-card">
     <div class="card-body">
         <h2 class="answers-title">Ваш ответ</h2>
-        <form action="{% url 'question' question.id %}" method="post">
+        <form action="{{ question.get_absolute_url }}" method="post">
             {% csrf_token %}
             <div class="mb-3">
                 <label for="answer-text" class="form-label">Текст ответа</label>

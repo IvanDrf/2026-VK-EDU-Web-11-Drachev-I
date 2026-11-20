@@ -86,3 +86,9 @@ venv/
 
 # VS Code
 .vscode/
+.env
+.env.*
+!.env.example
+db.sqlite3
+staticfiles/
+media/

@@ -4,8 +4,7 @@
                 {% include "includes/author_votes.html" with author=answer.author votes=answer.votes only %}
 
                 <div class="question-content flex-grow-1">
-                    <!-- Статические состояния отметки ответа, как в макете hw-1. -->
-                    {% if forloop.first and page.number == 1 %}
+                    {% if answer.is_correct %}
                     <div class="answer-status is-correct" role="checkbox" aria-checked="true" aria-readonly="true">✓ Правильный ответ</div>
                     {% else %}
                     <div class="answer-status" role="checkbox" aria-checked="false" aria-readonly="true">○ Правильный ответ не выбран</div>

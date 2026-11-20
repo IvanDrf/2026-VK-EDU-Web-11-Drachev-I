@@ -1,76 +1,50 @@
-from datetime import UTC, datetime, timedelta
-
-from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.core.paginator import EmptyPage, Page, PageNotAnInteger, Paginator
 from django.http import HttpRequest
+from django.shortcuts import render
+
+from .models import Question, Tag
 
 
-def paginate(objects_list, request: HttpRequest, per_page=10):
+def render_question_list(request: HttpRequest, queryset, template, **context):
+    page = paginate(queryset, request)
+    return render(request, template, {"questions": page.object_list, "page": page, **context})
+
+
+def pagination_pages(page: Page) -> list[int | str]:
+    last = page.paginator.num_pages
+    if last <= 10:
+        return list(range(1, last + 1))
+
+    start = max(2, min(page.number - 4, last - 8))
+    stop = start + 8
+
+    numbers: list[int | str] = [1]
+    if start > 2:
+        numbers.append("…")
+    numbers.extend(range(start, stop))
+
+    if stop < last:
+        numbers.append("…")
+
+    numbers.append(last)
+    return numbers
+
+
+class PaginationPage(Page):
+    @property
+    def page_numbers(self) -> list[int | str]:
+        return pagination_pages(self)
+
+
+def paginate(objects_list, request: HttpRequest, per_page=10) -> PaginationPage:
     paginator = Paginator(objects_list, per_page)
-    page_number = request.GET.get("page", 1)
-
     try:
-        page = paginator.page(page_number)
-    except PageNotAnInteger:
-        page = paginator.page(1)
-    except EmptyPage:
+        page = paginator.page(request.GET.get("page", 1))
+    except (PageNotAnInteger, EmptyPage):
         page = paginator.page(1)
 
-    return page
-
-
-AUTHORS = ["IvanDrf", "Vanek1", "Vanek2", "Vanek3", "Vanek4"]
-TAGS_POOL = ["python", "django", "fastapi", "backend", "docker", "postgresql", "html", "css", "git"]
+    return PaginationPage(page.object_list, page.number, paginator)
 
 
 def count_most_popular_tags(request: HttpRequest):
-    tags: dict[str, int] = {}
-    for question in QUESTIONS:
-        for tag in question["tags"]:
-            tags[tag] = tags.get(tag, 0) + 1
-
-    return {"popular_tags": [{"name": name, "count": count} for name, count in tags.items()]}
-
-
-def generate_questions(count: int) -> list[dict]:
-    questions: list[dict] = []
-
-    for i in range(1, count + 1):
-        questions.append(
-            {
-                "id": i,
-                "title": f"Заголовок вопроса #{i}",
-                "text": (
-                    f"Текст вопроса #{i}. Lorem ipsum dolor sit amet, consectetur "
-                    f"adipiscing elit, sed do eiusmod tempor incididunt ut labore."
-                ),
-                "author": AUTHORS[i % len(AUTHORS)],
-                "votes": (i * 3) % 20 + 1,
-                "tags": TAGS_POOL[: (i % 3) + 1],
-                "created_at": datetime(2026, 10, 10, 10, tzinfo=UTC) + timedelta(days=i, minutes=i),
-            }
-        )
-
-    return questions
-
-
-def generate_answers(count: int, question_count: int = 35) -> list[dict]:
-    answers: list[dict] = []
-
-    for i in range(1, count + 1):
-        answers.append(
-            {
-                "id": i,
-                "question_id": (i - 1) % question_count + 1,
-                "text": (f"Ответ #{i}. Lorem Ipsum is simply dummy text of the printing and typesetting industry."),
-                "author": ["MariaK", "PavelDev", "AnnaS"][i % 3],
-                "votes": (i * 4) % 15 + 1,
-                "created_at": datetime(2026, 12, 1, 15, 10, tzinfo=UTC) + timedelta(hours=i),
-            }
-        )
-
-    return answers
-
-
-QUESTIONS = generate_questions(35)
-
-ANSWERS = generate_answers(len(QUESTIONS) * 25, question_count=len(QUESTIONS))
+    return {"popular_tags": Tag.queries.popular(), "best_members": Question.queries.best_authors()}
