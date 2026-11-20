@@ -1,0 +1,20 @@
+            <aside class="col-lg-4 col-xl-3">
+                <div class="sidebar-card">
+                    <h2 class="sidebar-title">Популярные теги</h2>
+                    <div class="sidebar-tags d-flex flex-wrap">
+                        {% for tag in popular_tags %}
+                        <a href="{% url 'tag' tag.name %}" class="tag">{{ tag.name }} <span class="tag-count">{{ tag.count }}</span></a>
+                        {% empty %}
+                        <span class="text-muted">Пока нет тегов</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <section class="sidebar-card">
+                    <h2 class="sidebar-title">Лучшие пользователи</h2>
+                    <ol class="best-members">
+                        <li><span>MariaK</span> <span class="text-muted">1 240 баллов</span></li>
+                        <li><span>IvanDrf</span> <span class="text-muted">980 баллов</span></li>
+                        <li><span>PavelDev</span> <span class="text-muted">760 баллов</span></li>
+                    </ol>
+                </section>
+            </aside>

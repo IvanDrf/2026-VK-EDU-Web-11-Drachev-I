@@ -1,0 +1,25 @@
+<div class="card question-card">
+    <div class="card-body">
+        <div class="d-flex">
+            {% include "includes/author_votes.html" with author=question.author votes=question.votes vote_position=forloop.counter only %}
+
+            <div class="question-content flex-grow-1">
+                <h2 class="card-title question-title" title="{{ question.title }}">
+                    <a href="{% url 'question' question.id %}" class="no-underline-link">{{ question.title }}</a>
+                </h2>
+                <p class="card-text question-text" title="{{ question.text }}">{{ question.text }}</p>
+
+                {% include "includes/tags.html" with tags=question.tags %}
+
+                <div class="question-meta d-flex justify-content-between align-items-center mt-3">
+                    <small class="question-date text-muted" title="Опубликовано {{ question.created_at|date:"j E Y, H:i" }}">
+                        {{ question.created_at|date:"j E Y, H:i" }}
+                    </small>
+                    <a href="{% url 'question' question.id %}#answers" class="question-answers badge rounded-pill">
+                        {{ question.answers_count }} ответов
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}{{ question.title }} — AskHub{% endblock %}
+
+{% block content %}
+<div class="card question-card question-detail">
+    <div class="card-body">
+        <div class="d-flex">
+            {% include "includes/author_votes.html" with author=question.author votes=question.votes only %}
+
+            <div class="question-content flex-grow-1">
+                <h1 class="question-title">{{ question.title }}</h1>
+                <div class="question-full-text">
+                    <p>{{ question.text }}</p>
+                </div>
+
+                {% include "includes/tags.html" with tags=question.tags %}
+
+                <div class="question-meta d-flex justify-content-between align-items-center mt-3">
+                    <small class="question-date text-muted" title="Опубликовано {{ question.created_at|date:"j E Y, H:i" }}">
+                        {{ question.created_at|date:"j E Y, H:i" }}
+                    </small>
+                    <span class="question-answers badge rounded-pill">{{ question.answers_count }} ответов</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2 id="answers" class="answers-title">Ответы <span class="answers-count">{{ question.answers_count }}</span></h2>
+
+<div class="answers-list">
+    {% for answer in answers %}
+    {% include "includes/answer_card.html" with answer=answer %}
+    {% empty %}
+    <p>Ответов пока нет.</p>
+    {% endfor %}
+</div>
+
+{% include "includes/paginator.html" with anchor="#answers" show_single_page=True %}
+
+<div class="card answer-form-card">
+    <div class="card-body">
+        <h2 class="answers-title">Ваш ответ</h2>
+        <form action="{% url 'question' question.id %}" method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="answer-text" class="form-label">Текст ответа</label>
+                <textarea class="form-control" maxlength="10000" aria-describedby="answer-hint answer-text-error" id="answer-text" name="text" rows="6"
+                    placeholder="Напишите ответ подробно" required></textarea>
+                <div id="answer-hint" class="form-text">До 10 000 символов. Объясните предложенное решение.</div>
+                <div id="answer-text-error" class="invalid-feedback field-error">Введите текст ответа. Максимум 10 000 символов.</div>
+            </div>
+            <button type="submit" class="btn btn-primary">Отправить ответ</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
